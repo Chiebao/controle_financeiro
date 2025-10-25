@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio - Nexa Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif; }
+
+    body { background-color: #121212; color: #f4f4f4; line-height:1.6; }
+
+    .container { width:90%; max-width:1200px; margin:0 auto; padding:40px 0; }
+
+    header { text-align:center; padding-bottom:40px; }
+    header h1 { font-size:2.5rem; color:#00bcd4; margin-bottom:10px; }
+    header p { font-size:1.2rem; color:#ccc; }
+
+    section { margin-bottom:60px; background:#1f1f1f; padding:30px; border-radius:10px; box-shadow:0px 4px 12px rgba(0,0,0,0.5); }
+    section h2 { color:#00bcd4; margin-bottom:20px; }
+    section p { margin-bottom:15px; }
+
+    .carousel { position:relative; overflow:hidden; border-radius:10px; }
+    .carousel-track { display:flex; transition: transform 0.5s ease-in-out; }
+    .carousel-track img { width:100%; border-radius:10px; flex-shrink:0; }
+
+    .carousel-buttons { position:absolute; top:50%; width:100%; display:flex; justify-content:space-between; transform:translateY(-50%); }
+    .carousel-buttons button { background: rgba(0,0,0,0.5); border:none; color:#fff; padding:10px 20px; cursor:pointer; border-radius:5px; transition:0.3s; }
+    .carousel-buttons button:hover { background: rgba(0,0,0,0.8); }
+
+    .btn { display:inline-block; padding:12px 25px; background-color:#00bcd4; color:#121212; text-decoration:none; border-radius:8px; transition:0.3s; font-weight:bold; }
+    .btn:hover { background-color:#0097a7; }
+
+    @media(max-width:768px){
+      header h1 { font-size:2rem; }
+      header p { font-size:1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+
+    <header>
+      <h1>Nexa Solutions</h1>
+      <p>Projeto Financeiro - Dashboard e Análise de Dados</p>
+    </header>
+
+ 
+    <section>
+      <h2>Sobre o Projeto</h2>
+      <p>O projeto “Nexa Solutions” analisa receitas, despesas e lucros mensais de uma empresa fictícia, gerando insights estratégicos para decisões financeiras.</p>
+      <p>Os dados foram tratados com Python (Pandas, Numpy) e visualizados em dashboard interativo no Power BI.</p>
+    </section>
+
+    <section>
+      <h2>Ferramentas Utilizadas</h2>
+      <p>- Python (Pandas, Numpy, Matplotlib, Seaborn)</p>
+      <p>- Excel/WPS para manipulação de dados</p>
+      <p>- Power BI para criação do dashboard</p>
+    </section>
+
+   
+    <section>
+      <h2>Dashboard Financeiro</h2>
+      <div class="carousel">
+        <div class="carousel-track">
+          <img src="/Captura de tela 2025-10-25 095436.png" alt="Lucro Mensal">
+          <img src="/Captura de tela 2025-10-25 095502.png" alt="Receita x Despesa">
+          <img src="/Captura de tela 2025-10-25 095554.png" alt="Margem de Lucro">
+          <img src="/Captura de tela 2025-10-25 095850.png" alt="Receita x Despesa mobile">
+          <img src="/Captura de tela 2025-10-25 095936.png" alt="Margem de Lucro mobile">
+        </div>
+        <div class="carousel-buttons">
+          <button id="prev">&#10094;</button>
+          <button id="next">&#10095;</button>
+        </div>
+      </div>
+      <p>Veja os gráficos de Lucro Mensal, Comparativo Receita x Despesa e Margem de Lucro.</p>
+      <a href="https://github.com/Chiebao/controle_financeiro" target="_blank" class="btn">Ver Código no GitHub</a>
+    </section>
+
+  
+    <section>
+      <h2>Principais Insights</h2>
+      <p>- Margem média de lucro: 25%</p>
+      <p>- Categoria “Salários” representa aproximadamente 40% dos custos</p>
+      <p>- Ajustes em despesas fixas e variáveis podem aumentar o lucro líquido em até 10%</p>
+    </section>
+
+  </div>
+
+  <!-- JS CARROSSEL -->
+  <script>
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const nextButton = document.getElementById('next');
+    const prevButton = document.getElementById('prev');
+    let currentIndex = 0;
+
+    function updateCarousel() {
+      const slideWidth = slides[0].getBoundingClientRect().width;
+      track.style.transform = 'translateX(-' + slideWidth * currentIndex + 'px)';
+    }
+
+    nextButton.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateCarousel();
+    });
+
+    prevButton.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateCarousel();
+    });
+
+    window.addEventListener('resize', updateCarousel);
+  </script>
+
+</body>
+</html>
+
