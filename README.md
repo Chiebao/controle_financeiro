@@ -2,6 +2,8 @@
 
 Análise financeira ponta a ponta de uma empresa fictícia: tratamento dos dados em Python e dashboard interativo no Power BI para acompanhar receita, despesa, lucro e margem mês a mês.
 
+🔗 **Página do projeto:** [controle-financeiro-dun-delta.vercel.app](https://controle-financeiro-dun-delta.vercel.app)
+
 > **Dados simulados.** A Nexa Solutions é fictícia e a base foi criada para estudo e portfólio.
 
 ![Dashboard no Power BI](Captura%20de%20tela%202025-10-25%20095436.png)
