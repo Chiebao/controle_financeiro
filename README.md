@@ -1,87 +1,75 @@
-# 📊 Projeto: Controle Financeiro Empresarial
+# Controle Financeiro Empresarial — Nexa Solutions
 
-## 🏢 Empresa Fictícia
-**Nome:** Nexa Solutions  
-**Descrição:** Dashboard financeiro desenvolvido para analisar receitas, despesas e lucros mensais de uma empresa fictícia. O objetivo é gerar insights estratégicos para tomada de decisão.
-<img width="1907" height="989" alt="image" src="https://github.com/user-attachments/assets/0ce65c7d-c5a3-4dda-8fad-500a1901eff7" />
+Análise financeira ponta a ponta de uma empresa fictícia: tratamento dos dados em Python e dashboard interativo no Power BI para acompanhar receita, despesa, lucro e margem mês a mês.
 
----
+> **Dados simulados.** A Nexa Solutions é fictícia e a base foi criada para estudo e portfólio.
 
-## 🎯 Objetivo do Projeto
-- Analisar a saúde financeira da empresa mês a mês  
-- Visualizar receita, despesa, lucro líquido e margem de lucro  
-- Identificar oportunidades de redução de custos e otimização de receitas  
-- Construir um dashboard interativo no Power BI para apoio à decisão  
+![Dashboard no Power BI](Captura%20de%20tela%202025-10-25%20095436.png)
 
 ---
 
-## 🛠 Ferramentas Utilizadas
-- **Python**: pré-processamento e cálculos automáticos  
-  - Bibliotecas: `pandas`, `numpy`, `openpyxl`  
-- **Excel/WPS**: criação da base de dados simulada  
-- **Power BI**: construção do dashboard interativo e visualizações  
+## Problema
+
+Uma empresa que só olha o faturamento não percebe quando está perdendo dinheiro. O objetivo foi responder, mês a mês: **quanto entrou, quanto saiu, quanto sobrou e o que puxou o resultado.**
+
+## O que foi feito
+
+1. **Base de dados** em Excel com 200 lançamentos de receita (5 categorias) e 250 de despesa (8 categorias, fixas e variáveis), de janeiro a junho de 2025.
+2. **Tratamento em Python** (`finac.py`): leitura das duas abas, conversão de datas, agrupamento por mês, junção de receitas e despesas e cálculo de lucro líquido e margem. O resultado sai em `base_tratada.xlsx`.
+3. **Dashboard no Power BI** (`controle_financeiro.pbix`): evolução do lucro, margem por mês, receita × despesa, tabela mensal e card de meta, com versão para celular.
+4. **Página web** (`index.html`) para apresentar o dashboard e os insights a quem não tem o Power BI.
+
+## Resultados da análise
+
+| Mês | Receita | Despesa | Lucro | Margem |
+|---|---:|---:|---:|---:|
+| Jan | R$ 210.219 | R$ 187.329 | R$ 22.890 | 10,9% |
+| Fev | R$ 205.529 | R$ 170.873 | R$ 34.656 | 16,9% |
+| Mar | R$ 176.572 | R$ 205.907 | **−R$ 29.335** | **−16,6%** |
+| Abr | R$ 169.833 | R$ 174.160 | −R$ 4.327 | −2,6% |
+| Mai | R$ 222.465 | R$ 158.560 | R$ 63.905 | 28,7% |
+| Jun | R$ 156.010 | R$ 157.397 | −R$ 1.387 | −0,9% |
+| **Semestre** | **R$ 1.140.628** | **R$ 1.054.226** | **R$ 86.402** | **7,6%** |
+
+**Principais achados**
+
+- **Metade dos meses deu prejuízo.** Março, abril e junho fecharam no vermelho, apesar de o semestre ter lucro.
+- **Março foi o pior mês por causa do marketing.** Foram R$ 59 mil em marketing, o maior gasto mensal de uma única categoria no período, num mês de receita abaixo da média.
+- **Não existe um "vilão" único nas despesas.** Nenhuma categoria passa de 15% do total; marketing (14,5%) e energia (14,4%) lideram. Reduzir custo aqui exige ajuste em várias frentes, não um corte só.
+- **52% das despesas são fixas**, o que deixa a margem sensível a meses de receita mais fraca.
+
+## Tecnologias
+
+`Python` `Pandas` `openpyxl` `Excel` `Power BI` `HTML` `CSS`
+
+## Estrutura
+
+```
+/
+├── controle_financeiro.xlsx   # Base original (abas Receitas e Despesas)
+├── finac.py                   # Tratamento e cálculo dos indicadores
+├── base_tratada.xlsx          # Saída do script, usada no Power BI
+├── controle_financeiro.pbix   # Dashboard
+├── index.html                 # Página de apresentação do projeto
+└── Captura de tela *.png      # Prints do dashboard (desktop e celular)
+```
+
+## Como executar
+
+```bash
+pip install pandas openpyxl
+python finac.py
+```
+
+O script gera `base_tratada.xlsx`. Para ver o dashboard, abra `controle_financeiro.pbix` no Power BI Desktop.
+
+## Próximos passos
+
+- Análise de rentabilidade por categoria de receita
+- Projeção de fluxo de caixa para os meses seguintes
+- Atualização automática da base no Power BI
 
 ---
 
-## 📂 Estrutura do Repositório
-controle-financeiro/
-│
-├── dados/
-│ ├── controle_financeiro.xlsx # Base de dados original
-│ └── base_tratada.xlsx # Base tratada e consolidada pelo Python
-│
-├── scripts/
-│ └── tratamento_financeiro.py # Script Python para pré-processamento
-│
-├── imagens/
-│ ├── lucro_mensal.png # Gráfico de Lucro Mensal
-│ ├── receita_vs_despesa.png # Comparativo Receita x Despesa
-│ └── margem_lucro.png # Gráfico de Margem de Lucro
-│
-└── README.md # Este arquivo
-
----
-
-## 📊 KPIs Principais
-- **Receita Total**: soma de todas as receitas mensais  
-- **Despesa Total**: soma de todas as despesas mensais  
-- **Lucro Líquido**: Receita Total – Despesa Total  
-- **Margem de Lucro (%)**: percentual de lucro em relação à receita  
-- **Lucro Acumulado**: evolução do lucro ao longo dos meses  
-
----
-
-## 📈 Visualizações do Dashboard
-1. **Lucro Mensal**: gráfico de linha mostrando evolução do lucro mês a mês  
-2. **Comparativo Receita x Despesa**: colunas agrupadas com receitas e despesas  
-3. **Margem de Lucro (%)**: linha mostrando a margem mês a mês  
-4. **Distribuição de Despesas**: gráfico de pizza por categoria de custo  
-5. **Cards de KPIs**: indicadores de Receita Total, Despesa Total e Lucro Líquido  
-
----
-
-## 🔍 Insights
-- Os meses de fevereiro e março apresentaram margens menores devido ao aumento de despesas de marketing  
-- A categoria **Salários** representa aproximadamente 40% dos custos fixos  
-- Margem média de lucro: 25%, mostrando boa rentabilidade  
-- Com ajustes em custos variáveis e controle de despesas fixas, é possível aumentar o lucro líquido em até 10%  
-
----
-
-## 💡 Observações
-- Toda a base de dados é **simulada** e serve apenas para fins de estudo e portfólio  
-- O projeto demonstra **habilidades em análise de dados**, tratamento de dados com Python e criação de dashboards interativos no Power BI  
-
----
-
-## 📌 Próximos Passos / Melhorias
-- Integrar dados reais ou simulados de mais empresas  
-- Adicionar projeções de fluxo de caixa e cenários futuros  
-- Automatizar atualização de dados para dashboards dinâmicos  
-- Expandir KPIs para análise de rentabilidade por categoria e centro de custo  
-
----
-
-## 📂 GitHub e Contato
-- Veja mais projetos no meu GitHub: [github.com/luanachiebao](https://github.com/luanachiebao)  
-- Contato profissional: [LinkedIn](https://www.linkedin.com/in/luanachiebao/)  
+**Luana Godoy** · Estudante de Análise e Desenvolvimento de Sistemas
+[LinkedIn](https://www.linkedin.com/in/luana-chiebao) · [GitHub](https://github.com/Chiebao)
